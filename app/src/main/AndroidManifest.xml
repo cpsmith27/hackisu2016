@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.clarifai.androidstarter" >
 
+    <uses-sdk android:maxSdkVersion="21" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- We will request access to the camera, saying we require a camera
+     of some sort but not one with autofocus capability. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.clarifai.androidstarter.RecognitionActivity"
+            android:name="com.clarifai.androidstarter.CameraPreview"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden">
