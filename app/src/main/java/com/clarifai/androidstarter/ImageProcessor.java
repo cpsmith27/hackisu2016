@@ -6,14 +6,11 @@ import android.util.Log;
 import com.clarifai.api.ClarifaiClient;
 import com.clarifai.api.RecognitionRequest;
 import com.clarifai.api.RecognitionResult;
-import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -50,12 +47,12 @@ public class ImageProcessor {
         }
     }
 
-    public RecognitionResult getTags() {
+    public RecognitionResult queryTags() {
         RecognitionRequest rq = new RecognitionRequest(jpeg);
         return client.recognize(rq).get(0);
     }
 
-    public String getColors() throws IOException {
+    public String queryColors() throws IOException {
         Charset UTF8 = Charset.forName("UTF-8");
 
         try {

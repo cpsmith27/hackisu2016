@@ -16,6 +16,7 @@ import com.clarifai.api.RecognitionResult;
 import com.clarifai.api.Tag;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import static android.provider.MediaStore.Images.Media;
 
@@ -28,7 +29,7 @@ public class RecognitionActivity extends Activity {
   private Button selectButton;
   private ImageView imageView;
   private TextView textView;
-  private int mode = 0;
+  private int mode = 1;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class RecognitionActivity extends Activity {
             protected String doInBackground(Bitmap... bitmaps) {
               try {
                 ImageProcessor ip = new ImageProcessor(bitmaps[0]);
-                return ip.getColors();
+                return ip.queryColors();
               } catch (Exception e) {
                 Log.e("1",e.getMessage());
                 return "fail";
@@ -87,7 +88,7 @@ public class RecognitionActivity extends Activity {
             @Override
             protected RecognitionResult doInBackground(Bitmap... bitmaps) {
               ImageProcessor ip = new ImageProcessor(bitmaps[0]);
-              return ip.getTags();
+              return ip.queryTags();
             }
 
             @Override
@@ -152,7 +153,16 @@ public class RecognitionActivity extends Activity {
   }
 
   private void updateUIForResultString(String result) {
-    textView.setText(result);
+    ColorsResult res = new ColorsResult(result);
+
+    StringWriter sb = new StringWriter();
+
+    for (Color c : res.colors) {
+      sb.write(c.toString() + ", ");
+    }
+
+    String s = sb.toString();
+    textView.setText(s.substring(0, s.length() -2));
     selectButton.setEnabled(true);
   }
 }
