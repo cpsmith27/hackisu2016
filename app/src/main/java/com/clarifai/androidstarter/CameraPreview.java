@@ -104,7 +104,7 @@ public class CameraPreview extends Activity {
                 // check for availability of multiple cameras
                 if (numberOfCameras == 1) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage(this.getString(R.string.camera_alert))
+                    builder.setMessage("Alert")
                             .setNeutralButton("Close", null);
                     AlertDialog alert = builder.create();
                     alert.show();
