@@ -117,6 +117,9 @@ public class RecognitionActivity extends Activity {
       byte[] jpeg = out.toByteArray();
 
       // Send the JPEG to Clarifai and return the result.
+
+      RecognitionRequest rq = new RecognitionRequest(jpeg);
+      rq.setModel("Color");
       return client.recognize(new RecognitionRequest(jpeg)).get(0);
     } catch (ClarifaiException e) {
       Log.e(TAG, "Clarifai error", e);
