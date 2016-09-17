@@ -198,7 +198,6 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
         setMeasuredDimension(width, height);
 
         if (mSupportedPreviewSizes != null) {
-            mPreviewSize = getOptimalPreviewSize(mSupportedPreviewSizes, width, height);
         }
     }
 
